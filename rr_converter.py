@@ -240,21 +240,21 @@ Bitte lege den Export der LizenzLEA als xlsx File im import-Ordner ab und starte
                 end_date = ''
 
             if 'T-VoD' in rights:
-                tvod = 'x'
+                tvod = 'X'
             if 'EST' in rights:
-                est = 'x'
+                est = 'X'
             if 'DEU' in countries or 'Deutschland' in countries:
-                de = 'x'
+                de = 'X'
             if 'AUT' in countries or 'Österreich' in countries:
-                at = 'x'
+                at = 'X'
             if 'CHD' in countries or 'Dt. Schweiz' in countries:
-                ch = 'x'
+                ch = 'X'
             if 'LUX' in countries or 'Luxemburg' in countries:
-                lu = 'x'
+                lu = 'X'
             if 'LIE' in countries or 'Liechtenstein' in countries:
-                li = 'x'
+                li = 'X'
             if 'AA' in countries or 'Südtirol' in countries:
-                aa = 'x'
+                aa = 'X'
             if licensors:
                 licensor = licensors.pop()
             if so_nrs:
