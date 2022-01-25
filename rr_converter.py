@@ -30,6 +30,11 @@ class RR_Converter:
     Ein Command Line Tool mit dem man die Rechtedaten aus der LDB LizenzLea (neue Rechteverwaltung)
     in einen Rechtereport umwandeln kann, der dem Format des alten RechteReports entspricht.
     Enthält nur EST und TVOD-Rechte, keine Holdbacks.
+
+    erstellt die folgenden Ordner:
+         "./import" - hier kann man die Exporte aus der LizenzLEA ablegen, die zum Generieren der Rechtereports
+         genutzt werden
+         "./export" - dort wird der konvertierte Report abgelegt
     """
     def __init__(self):
         print('starting RechteReport-Converter')
@@ -40,7 +45,8 @@ class RR_Converter:
 
     def convert_rights_report_to_old_version(self):
         """
-        liest neueste xlsx Datei
+        startet den RechteReportConverter - liest zuerst die aktuellste Datei aus dem 'import'-Ordner ein,
+        konvertiert die Daten und exportiert sie in den 'export' Ordner
         :return:
         """
 
