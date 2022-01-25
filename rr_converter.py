@@ -26,6 +26,11 @@ elif __file__:
 
 
 class RR_Converter:
+    """
+    Ein Command Line Tool mit dem man die Rechtedaten aus der LDB LizenzLea (neue Rechteverwaltung)
+    in einen Rechtereport umwandeln kann, der dem Format des alten RechteReports entspricht.
+    Enthält nur EST und TVOD-Rechte, keine Holdbacks.
+    """
     def __init__(self):
         print('starting RechteReport-Converter')
         logging.info(f'RechteReportConverter gestartet von {os.getlogin()}')
@@ -80,6 +85,14 @@ Bitte lege den Export der LizenzLEA als xlsx File im import-Ordner ab und starte
         print('Export erfolgreich abgeschlossen. Die Datei liegt im export-Ordner ab.')
 
     def export_excel_report(self, title_data:List[dict], filename="export/rechtereport.xlsx"):
+        """
+        exportiert den Rechtereport als XLSX-Datei
+        die erste Zeile wird freigelassen, danach kommt der Header (um dem Format des alten Reports zu entsprechen)
+        :param title_data: eine Liste, die für jeden Titel bzw. jede Tnr ein Dictionary mit Rechtedaten enthält
+        :param [OPTIONAL] filename: der relative Pfad und Dateiname unter dem der Report abgespeichert werden soll
+        (sollte eine .xlsx-Datei sein)
+        :return:
+        """
         print('exporting file to "export" folder')
         df = pd.DataFrame(title_data, columns=title_data[0].keys())
         columns = [
@@ -142,12 +155,12 @@ Bitte lege den Export der LizenzLEA als xlsx File im import-Ordner ab und starte
                 df[col] = ''
         df = df[columns]
         filename = f"export/RechteReportOldFormat_{date.today().strftime('%Y-%m-%d')}.xlsx"
-        df.to_excel(filename, sheet_name='RR', index=False)
+        df.to_excel(filename, sheet_name='RR', index=False, startrow=1)
 
     def get_latest_rechte_report(self, directory: str) ->os.PathLike:
         """
         sucht die zuletzt erstellte/modifizierte Datei in einem gegebenen Verzeichnis
-        :param directory:
+        :param directory: der Ordner in dem gesucht werden soll als String
         :return:
         """
         # get list of xlsx files in current directory
